@@ -1,33 +1,30 @@
-# ​ E-Commerce Website
+# ​ Spotify Clone
 
-A modern and intuitive e-commerce website designed to make online shopping simple and delightful. Featuring smooth navigation, secure checkout, personalized recommendations, and a diverse product catalog to suit every need.
+A sleek, front-end **Spotify clone** built with HTML, CSS, and JavaScript. It features music streaming, playlist navigation, and responsive controls designed to mirror Spotify’s core interface and user experience.
 
 ---
 
 ##  Features
 
-- **User-Friendly UI** – Sleek, responsive design ensures effortless browsing on any device.  
-- **Smart Navigation** – Easily explore categories and products with intuitive menus and filtering options.  
-- **Secure Checkout** – Streamlined and trustworthy checkout flow for a confident purchasing experience.  
-- **Personalized Suggestions** – Relevant product recommendations based on user preferences.  
-- **Wide Product Range** – From essentials to trending items—shop conveniently in one place.
+- **Music Playback** – Play, pause, skip tracks, and control volume with intuitive buttons.
+- **Playlist Management** – Browse and interact with available song lists.
+- **Clean UI** – Enjoy a modern, responsive design with dynamic icons and artwork.
+- **Local Media Support** – Play songs stored locally in the `songs/` folder.
 
 ---
 
-##  Tech Stack
+##  File Structure
 
-*(Customize this section based on your actual usage—e.g., React, Node.js, Python, etc.)*
+├── spotify.html # Main HTML file with the Spotify-like layout
+├── style.css # CSS styling for UI visuals, layout, and responsiveness
+├── utility.css # Utility classes for streamlined design patterns
+├── scrip.js # JavaScript logic for playback and UI interactions
+├── songs/ # Folder containing audio files (e.g. .mp3) to play
+├── assets/ # SVG icons: play, pause, volume, playlists, etc.
 
-- **Frontend**: HTML, CSS, JavaScript, [framework/library]
-- **Backend**: [e.g., Node.js, Python, PHP]
-- **Database**: [e.g., MySQL, MongoDB]
-- **Other Tools**: [e.g., Payment Gateway integration, Authentication, etc.]
+##  Setup & Usage
 
----
-
-##  Setup & Installation
-
-1. **Clone the Repository**  
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/MohammedBilalTanveer/E-Commerce-Website.git
-   cd E-Commerce-Website
+   git clone https://github.com/MohammedBilalTanveer/Spotify-Clone.git
+   cd Spotify-Clone
