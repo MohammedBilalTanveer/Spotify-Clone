@@ -1,0 +1,272 @@
+/* ---------- Player bar (tablet & desktop) ---------- */
+
+.player-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 4fr) minmax(0, 3fr);
+  align-items: center;
+  gap: 16px;
+  height: var(--player-height);
+  padding: 0 16px 0 8px;
+  background: var(--black);
+}
+
+.player-bar__song {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.player-bar__cover-link {
+  flex: none;
+  border-radius: 4px;
+}
+
+.player-bar__cover {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+}
+
+.player-bar__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.player-bar__title,
+.player-bar__artist {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.player-bar__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.player-bar__title:hover {
+  text-decoration: underline;
+}
+
+.player-bar__artist {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.player-bar__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  max-width: 722px;
+  justify-self: center;
+}
+
+.player-bar__extra {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+@media (max-width: 1023px) {
+  .player-bar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) auto;
+    gap: 12px;
+    padding: 0 12px 0 8px;
+  }
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.controls--lg {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.controls--lg .ctrl svg {
+  width: 26px;
+  height: 26px;
+}
+
+.controls--lg .ctrl--play {
+  width: 64px;
+  height: 64px;
+}
+
+.controls--lg .ctrl--play svg {
+  width: 28px;
+  height: 28px;
+}
+
+.controls--lg .ctrl {
+  width: 48px;
+  height: 48px;
+}
+
+.controls--lg .ctrl.is-active::after {
+  bottom: 2px;
+}
+
+/* ---------- Seek bar ---------- */
+
+.seekbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.seekbar__time {
+  flex: none;
+  min-width: 40px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.seekbar__time--current {
+  text-align: right;
+}
+
+.seekbar__slider {
+  flex: 1;
+}
+
+/* Now-playing layout: bar on top, times underneath */
+.seekbar--stacked {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'bar bar'
+    'current total';
+  row-gap: 2px;
+}
+
+.seekbar--stacked .seekbar__slider {
+  grid-area: bar;
+}
+
+.seekbar--stacked .seekbar__time--current {
+  grid-area: current;
+  text-align: left;
+}
+
+.seekbar--stacked .seekbar__time--total {
+  grid-area: total;
+  text-align: right;
+}
+
+/* ---------- Slider (seek + volume) ---------- */
+
+.slider {
+  --percent: 0%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 16px;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.slider:focus-visible {
+  outline: none;
+}
+
+.slider__track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.slider__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--percent);
+  border-radius: inherit;
+  background: var(--text);
+}
+
+.slider__thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--percent);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.12s;
+}
+
+.slider.is-dragging .slider__fill,
+.slider:focus-visible .slider__fill {
+  background: var(--green);
+}
+
+.slider.is-dragging .slider__thumb,
+.slider:focus-visible .slider__thumb {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.slider:focus-visible .slider__track {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .slider:hover .slider__fill {
+    background: var(--green);
+  }
+
+  .slider:hover .slider__thumb {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Touch screens: always show the thumb so it's obvious you can drag it */
+@media (hover: none) {
+  .slider__thumb {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.slider[aria-disabled='true'] {
+  cursor: default;
+}
+
+.slider[aria-disabled='true'] .slider__thumb {
+  display: none;
+}
+
+/* ---------- Volume ---------- */
+
+.volume {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.volume__slider {
+  width: clamp(80px, 9vw, 125px);
+}
+
+/* Phones/tablets control volume with hardware buttons (and iOS ignores it) */
+@media (pointer: coarse) {
+  .volume__slider {
+    display: none;
+  }
+}

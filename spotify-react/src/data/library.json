@@ -1,0 +1,87 @@
+{
+  "playlists": [
+    {
+      "id": "cs",
+      "title": "Nasheeds",
+      "description": "Nasheeds For You",
+      "owner": "Bilal",
+      "cover": "/songs/cs/cover.jpg",
+      "tracks": [
+        {
+          "id": "cs/Ama nada.mp3",
+          "artist": "Bilal",
+          "title": "Ama nada",
+          "src": "/songs/cs/Ama%20nada.mp3",
+          "duration": 263.3
+        },
+        {
+          "id": "cs/Humood - Kunt.mp3",
+          "artist": "Humood",
+          "title": "Kunt",
+          "src": "/songs/cs/Humood%20-%20Kunt.mp3",
+          "duration": 295.5
+        }
+      ]
+    },
+    {
+      "id": "ncs",
+      "title": "Naat",
+      "description": "Naats for you",
+      "owner": "Bilal",
+      "cover": "/songs/ncs/cover.jpg",
+      "tracks": [
+        {
+          "id": "ncs/A Humood - Kunt.mp3",
+          "artist": "Humood",
+          "title": "Kunt",
+          "src": "/songs/ncs/A%20Humood%20-%20Kunt.mp3",
+          "duration": 295.5
+        },
+        {
+          "id": "ncs/Ama nada bikal.mp3",
+          "artist": "Bilal",
+          "title": "Ama nada bikal",
+          "src": "/songs/ncs/Ama%20nada%20bikal.mp3",
+          "duration": 263.3
+        },
+        {
+          "id": "ncs/Hasbi Rabbi Pt 2.mp3",
+          "artist": "Bilal",
+          "title": "Hasbi Rabbi Pt 2",
+          "src": "/songs/ncs/Hasbi%20Rabbi%20Pt%202.mp3",
+          "duration": 241.9
+        },
+        {
+          "id": "ncs/Hasbi Rabbi Pt 5.mp3",
+          "artist": "Bilal",
+          "title": "Hasbi Rabbi Pt 5",
+          "src": "/songs/ncs/Hasbi%20Rabbi%20Pt%205.mp3",
+          "duration": 310.4
+        },
+        {
+          "id": "ncs/Hasbi Rabbi Pt7.mp3",
+          "artist": "Bilal",
+          "title": "Hasbi Rabbi Pt7",
+          "src": "/songs/ncs/Hasbi%20Rabbi%20Pt7.mp3",
+          "duration": 212.4
+        }
+      ]
+    },
+    {
+      "id": "playlist2",
+      "title": "Hamds",
+      "description": "Hamds for you",
+      "owner": "Bilal",
+      "cover": "/songs/playlist2/cover.jpg",
+      "tracks": []
+    },
+    {
+      "id": "playlist3",
+      "title": "Hamds & Naats",
+      "description": "Hamds & Naats for you",
+      "owner": "Bilal",
+      "cover": "/songs/playlist3/cover.jpg",
+      "tracks": []
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+/*
+  App shell
+  ─ desktop  (≥1024px): sidebar | main, player bar across the bottom
+  ─ tablet   (640–1023): main only, sidebar becomes a drawer, player bar at the bottom
+  ─ phone    (<640px):  main only, mini player + bottom tab bar
+  Keep these breakpoints in sync with src/hooks/useMediaQuery.js
+*/
+
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'sidebar main'
+    'player player';
+  gap: var(--gap);
+  height: 100vh;
+  height: 100dvh;
+  padding: var(--gap) var(--gap) 0;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.main {
+  grid-area: main;
+}
+
+.player-bar,
+.dock {
+  grid-area: player;
+}
+
+@media (max-width: 1023px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'main'
+      'player';
+  }
+}
+
+@media (max-width: 639px) {
+  .app {
+    gap: 0;
+    padding: 0;
+  }
+}
+
+/* ---------- Main (scrolling content) ---------- */
+
+.main {
+  position: relative;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  container: main / inline-size;
+  transition: --page-color 0.6s ease;
+}
+
+.main:focus {
+  outline: none;
+}
+
+.main__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--page-color) 85%, var(--surface)) 0,
+    var(--surface) 380px
+  );
+  background-repeat: no-repeat;
+}
+
+.main__content {
+  flex: 1;
+}
+
+@media (max-width: 639px) {
+  .main {
+    border-radius: 0;
+  }
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 64px;
+  padding: 12px 24px;
+  transition: background-color 0.3s;
+}
+
+.topbar.is-scrolled {
+  background-color: color-mix(in srgb, var(--page-color) 45%, var(--surface));
+}
+
+.topbar__left,
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.topbar__logo {
+  display: none;
+  color: var(--text);
+}
+
+.topbar__logo svg {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-arrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--text);
+  transition:
+    opacity 0.2s,
+    transform 0.1s;
+}
+
+.nav-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-arrow:disabled {
+  opacity: 0.45;
+}
+
+@media (hover: hover) {
+  .nav-arrow:not(:disabled):hover {
+    transform: scale(1.06);
+  }
+}
+
+@media (max-width: 1023px) {
+  .topbar {
+    padding-left: 12px;
+  }
+
+  .topbar__logo {
+    display: block;
+    margin-right: 4px;
+  }
+}
+
+@media (max-width: 639px) {
+  .topbar {
+    min-height: 56px;
+    padding: 8px 12px 8px 4px;
+  }
+
+  .topbar__left {
+    gap: 4px;
+  }
+
+  .nav-arrow {
+    display: none;
+  }
+
+  .topbar__right {
+    gap: 2px;
+  }
+
+  .topbar .btn {
+    min-height: 32px;
+    padding: 4px 14px;
+    font-size: 0.875rem;
+  }
+
+  .topbar .btn--ghost {
+    padding-inline: 10px;
+  }
+}

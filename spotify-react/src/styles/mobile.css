@@ -1,0 +1,225 @@
+/* ---------- Phone dock: mini player + bottom tab bar ---------- */
+
+.dock {
+  position: relative;
+  z-index: 20;
+  background: var(--black);
+}
+
+/* Soft fade from the content into the dock */
+.dock::before {
+  content: '';
+  position: absolute;
+  inset: -24px 0 100% 0;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+  pointer-events: none;
+}
+
+.mini-player {
+  --mini-color: #535353;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 6px 8px 0;
+  padding: 8px 4px 8px 8px;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: color-mix(in srgb, var(--mini-color) 60%, #121212);
+  transition: background-color 0.5s;
+}
+
+.mini-player__open {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-align: left;
+}
+
+.mini-player__cover {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.mini-player__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mini-player__title,
+.mini-player__artist {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mini-player__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.mini-player__artist {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8125rem;
+}
+
+.mini-player__btn {
+  color: var(--text);
+}
+
+.mini-player__progress {
+  position: absolute;
+  right: 8px;
+  bottom: 0;
+  left: 8px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.mini-player__progress span {
+  display: block;
+  height: 100%;
+  background: var(--text);
+  transform-origin: left;
+  transition: transform 0.25s linear;
+}
+
+.mobile-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 4px env(safe-area-inset-right) calc(4px + env(safe-area-inset-bottom)) env(safe-area-inset-left);
+}
+
+.mobile-nav a,
+.mobile-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.mobile-nav svg {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile-nav .active {
+  color: var(--text);
+}
+
+/* ---------- Full-screen Now Playing (phones) ---------- */
+
+.now-playing {
+  --np-color: #535353;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding: calc(8px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom));
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--np-color) 90%, #000) 0%,
+    color-mix(in srgb, var(--np-color) 35%, #121212) 60%,
+    #121212 100%
+  );
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform 0.35s var(--ease-out),
+    visibility 0s linear 0.35s;
+}
+
+.now-playing.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.now-playing__header {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  align-items: center;
+  flex: none;
+}
+
+.now-playing__header .icon-btn {
+  color: var(--text);
+}
+
+.now-playing__context {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: center;
+}
+
+.now-playing__context span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.now-playing__context strong {
+  overflow: hidden;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.now-playing__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.now-playing__cover {
+  align-self: center;
+  width: 100%;
+  max-width: min(100%, 46vh);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+.now-playing__meta {
+  min-width: 0;
+  margin-top: 8px;
+}
+
+.now-playing__title {
+  overflow: hidden;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.now-playing__artist {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.now-playing .seekbar__time {
+  color: rgba(255, 255, 255, 0.7);
+}
